@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.usp.pcs.mlstudy;
 
 import lombok.Data;
 import org.apache.commons.math3.linear.MatrixUtils;
+import org.apache.commons.math3.linear.QRDecomposition;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.stat.StatUtils;
 
@@ -48,21 +44,39 @@ public class CostFunctions {
         RealMatrix euler = MatrixUtils.createRealMatrix(aux);
         return euler;
     }
+    
+    public RealMatrix normalEquation(){
+        RealMatrix nE=X.transpose().multiply(X);
+        nE = new QRDecomposition(nE).getSolver().getInverse();
+        nE=nE.multiply(X.transpose().multiply(Y));
+        return nE;
+    }
+    
+    public double calculateResidualMeanSquare(){
+        RealMatrix nE=normalEquation();
+        RealMatrix ss=Y.transpose().multiply(Y);
+        RealMatrix partB=nE.transpose().multiply(X.transpose()).multiply(Y);
+        ss=ss.subtract(partB);
+        return sum(ss)/(m-n);
+    }
+    
+    public double calculateResidualStandardDeviation(){
+        return Math.sqrt(calculateResidualMeanSquare());
+    }
 
     public double courseraLinearFunction() {
         RealMatrix costFunction = X.multiply(Theta.transpose());
-        RealMatrix jCalc = costFunction.subtract(Y.transpose());
+        RealMatrix jCalc = costFunction.subtract(Y);
         PowVisitor pw = new PowVisitor(2);
         jCalc.walkInOptimizedOrder(pw);
         return 1.0 / (2.0 * m) * sum(jCalc);
     }
 
     public double norrisLinearFunction() {
+        
         RealMatrix euler = generateEulerMatrix();
         RealMatrix costFunction = X.multiply(Theta.transpose()).add(euler.transpose());
-        RealMatrix jCalc = costFunction.subtract(Y.transpose());
-        PowVisitor pw = new PowVisitor(2);
-        jCalc.walkInOptimizedOrder(pw);
-        return Math.sqrt(sum(jCalc)/(m-2.0));
+        RealMatrix jCalc = costFunction.subtract(Y);
+        return calculateResidualStandardDeviation();
     }
 }

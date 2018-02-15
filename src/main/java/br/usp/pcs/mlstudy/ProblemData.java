@@ -41,7 +41,7 @@ public class ProblemData {
     public RealMatrix getYMatrix(){
         double[][] mY=new double[1][m];
         mY[0]=Arrays.copyOf(yValues, yValues.length);
-        return MatrixUtils.createRealMatrix(mY);
+        return MatrixUtils.createRealMatrix(mY).transpose();
     }
     
     public RealMatrix getThetaMatrix(){
