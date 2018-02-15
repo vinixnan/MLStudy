@@ -1,6 +1,6 @@
 package br.usp.pcs.mlstudy.functions;
 
-import br.usp.pcs.mlstudy.MatrixHelper;
+import br.usp.pcs.mlstudy.ProblemData;
 import org.apache.commons.math3.linear.RealMatrix;
 
 /**
@@ -8,6 +8,6 @@ import org.apache.commons.math3.linear.RealMatrix;
  * @author vinicius
  */
 public interface CostFunction {
-    RealMatrix calculateMatrix(MatrixHelper pd);
-    double calculateLinearFunction(MatrixHelper pd);
+    RealMatrix calculateMatrix(ProblemData pd);
+    double calculateLinearFunction(ProblemData pd);
 }

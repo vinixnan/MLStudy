@@ -19,7 +19,7 @@ public class CostFunctionsTest {
     public void testCourseraLinearFunction() {
         System.out.println("courseraLinearFunction");
         String filename = "data/test.dat";
-        MatrixHelper lr=ProblemReader.readMatrix(filename);
+        ProblemData lr=MatrixHelper.readMatrix(filename);
         CostFunction cf=new Coursera();
         double avg= cf.calculateLinearFunction(lr);
         System.out.println(avg);
@@ -33,7 +33,7 @@ public class CostFunctionsTest {
     public void testNorrisLinearFunction() {
         System.out.println("norrisLinearFunction");
         String filename = "data/norris.dat";
-        MatrixHelper lr=ProblemReader.readMatrix(filename);
+        ProblemData lr=MatrixHelper.readMatrix(filename);
         double[][] theta=lr.getTheta().getData();
         theta[0][0]=-0.262323073774029;
         theta[0][1]=1.00211681802045;
