@@ -40,7 +40,7 @@ public class StRD implements CostFunction {
     }
 
     @Override
-    public double calculateLinearFunction(ProblemData pd) {
+    public double calculateFunction(ProblemData pd) {
         return calculateResidualStandardDeviation(pd);
     }
 

@@ -19,6 +19,6 @@ public class LR {
         GradientDescent gd=new GradientDescent(0.01, 1500);
         gd.run(cf, lr);
         System.out.println(lr.getTheta());
-        System.out.println(cf.calculateLinearFunction(lr));
+        System.out.println(cf.calculateFunction(lr));
     }
 }

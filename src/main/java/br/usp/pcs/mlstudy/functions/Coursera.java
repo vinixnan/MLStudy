@@ -19,7 +19,7 @@ public class Coursera implements CostFunction{
     }
 
     @Override
-    public double calculateLinearFunction(ProblemData pd) {
+    public double calculateFunction(ProblemData pd) {
         RealMatrix jCalc = calculateMatrix(pd);
         PowVisitor pw = new PowVisitor(2);
         jCalc.walkInOptimizedOrder(pw);

@@ -23,6 +23,15 @@ import org.apache.commons.math3.stat.StatUtils;
  */
 public class MatrixHelper {
 
+    public static RealMatrix generateOneNumberMatrix(int m, double number) {
+        double[][] aux = new double[1][m];
+        for (int i = 0; i < m; i++) {
+            aux[0][i] = number;
+        }
+        RealMatrix mat = MatrixUtils.createRealMatrix(aux);
+        return mat;
+    }
+    
     public static double sum(RealMatrix m) {
         double[][] aux = m.getData();
         double[] tosum = new double[aux.length];

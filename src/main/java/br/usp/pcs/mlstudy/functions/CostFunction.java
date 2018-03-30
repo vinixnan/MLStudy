@@ -9,5 +9,5 @@ import org.apache.commons.math3.linear.RealMatrix;
  */
 public interface CostFunction {
     RealMatrix calculateMatrix(ProblemData pd);
-    double calculateLinearFunction(ProblemData pd);
+    double calculateFunction(ProblemData pd);
 }
